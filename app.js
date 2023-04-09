@@ -1,41 +1,28 @@
 (function () {
 'use strict';
 
-angular.module('DIApp', [])
-.controller('DIController', DIController);
+angular.module('MsgApp', [])
+.controller('MsgController', MsgController);
 
-function DIController ($scope,
-                       $filter,
-                       $injector) {
+MsgController.$inject = ['$scope'];
+function MsgController($scope) {
   $scope.name = "Yaakov";
+  $scope.stateOfBeing = "hungry";
+  $scope.contador = 0;
 
-  $scope.upper = function () {
-    var upCase = $filter('uppercase');
-    $scope.name = upCase($scope.name);
+  $scope.sayMessage = function () {
+    return "Yaakov likes to eat healthy snacks at night!";
   };
 
+  $scope.feedNext = function () {
+    if ($scope.contador==0){
+    $scope.contador=1;
+    $scope.stateOfBeing = "yaakov_fed";
+  }else{
+    $scope.stateOfBeing = "yaakov_hungry";
+    $scope.contador=0;}
+  };
 }
-
-function AnnonateMe(name, job, blah) {
-  return "Blah!";
-}
-
-var x1 = function () {
-  // do something, PLEASE!
-  return "Blah!";
-};
-
-var x2 = x1();
-
-function x3(arg) {
-  return arg; // Ha-ha! That's all I do!
-}
-
-var x4 = x3(x1);
-
-var x5 = x3(x2);
-
-var x6 = x3(x1());
 
 
 })();
